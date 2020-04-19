@@ -21,18 +21,21 @@ struct CalculatorLogic {
     mutating func calcButton(symbol: String) -> Double? {
         
         if let n = number {
-            if symbol == "+/-" {
+            switch symbol {
+            case "+/-":
                 return n * -1.0
-            } else if symbol == "%" {
+            case "%":
                 return n * 0.01
-            } else if symbol == "AC" {
+            case "AC":
                 return 0
-            } else if symbol == "=" {
-                return performTwoNumCalculation (n2: n)
-            } else {
+            case "=":
+                return performTwoNumCalculation(n2: n)
+            default:
                 intermediateCalculation = (n1: n, calcMethod: symbol)
             }
         }
+        
+        //need to return nil if optional binding doesn't work
         return nil
     }
     

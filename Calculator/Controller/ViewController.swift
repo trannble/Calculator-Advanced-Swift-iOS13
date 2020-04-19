@@ -9,18 +9,18 @@
 import UIKit
 
 class ViewController: UIViewController {
-        
+    
     private var isFinishedTypingNumber: Bool = true
     
     //using get and set -> shorter code! -> less room for error
     var displayValue: Double {
         get {
             guard let number = Double(displayLabel.text!) else {
-                 fatalError("Cannot convert String to Double")
-                 
-                 //number is an optional b/c not all text can be converted to double
-                 //second ! says that number will always have value (bc it will be 0 or pressed in), use guard for safety
-             }
+                fatalError("Cannot convert String to Double")
+                
+                //number is an optional b/c not all text can be converted to double
+                //second ! says that number will always have value (bc it will be 0 or pressed in), use guard for safety
+            }
             return number
         }
         set {
@@ -42,10 +42,9 @@ class ViewController: UIViewController {
         
         if let calcMethod = sender.currentTitle {
             
-            guard let result = calculatorLogic.calcButton(symbol: calcMethod) else {
-                fatalError("The result of the calculation is nil.")
+            if let result = calculatorLogic.calcButton(symbol: calcMethod) {
+                displayValue = result
             }
-            displayValue = result
         }
     }
     
