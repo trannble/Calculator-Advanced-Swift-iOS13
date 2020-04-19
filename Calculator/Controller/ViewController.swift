@@ -30,15 +30,19 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var displayLabel: UILabel!
     
+    private var calculatorLogic = CalculatorLogic()
+    //cannot set number = displayValue because calculatorLogic is a global var and therefore is initialized even before view. Compiler can't be sure that displayValue will not be nil
+    
     @IBAction func calcButtonPressed(_ sender: UIButton) {
         
         //What should happen when a non-number button is pressed
         isFinishedTypingNumber = true
         
+        calculatorLogic.setNumber(displayValue)
+        
         if let calcMethod = sender.currentTitle {
-            let calculatorLogic = CalculatorLogic(number: displayValue)
             
-            guard let result = calculatorLogic.calcButton(operation: calcMethod) else {
+            guard let result = calculatorLogic.calcButton(symbol: calcMethod) else {
                 fatalError("The result of the calculation is nil.")
             }
             displayValue = result
