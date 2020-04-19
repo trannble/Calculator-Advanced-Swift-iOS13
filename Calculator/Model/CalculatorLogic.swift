@@ -8,24 +8,25 @@
 
 import Foundation
 
-class CalculatorLogic {
+struct CalculatorLogic {
     
-    func calcButton(operation: String?) -> Double{
-        
-        var multiplierValue: Double = 0.0
-        
-        if let calcMethod = operation {
-            if calcMethod == "+/-" {
-                //                 displayValue *= -1
-                multiplierValue = -1.0
-            } else if calcMethod == "%" {
-                //                 displayValue /= 100
-                multiplierValue = 0.01
-            } else if calcMethod == "AC" {
-                //                 displayLabel.text = "0"
-                multiplierValue = 0
-            }
-        }
-        return multiplierValue
+    var number: Double
+    
+    init(number: Double) {
+        self.number = number
     }
+    
+    func calcButton(operation: String) -> Double?{
+        
+        if operation == "+/-" {
+            return number * -1.0
+        } else if operation == "%" {
+            return number * 0.01
+        } else if operation == "AC" {
+            return 0
+        }
+        
+        return nil
+    }
+    
 }

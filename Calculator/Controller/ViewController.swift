@@ -9,13 +9,11 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
-    var calculatorLogic = CalculatorLogic()
-    
+        
     private var isFinishedTypingNumber: Bool = true
     
     //using get and set -> shorter code! -> less room for error
-    fileprivate var displayValue: Double {
+    var displayValue: Double {
         get {
             guard let number = Double(displayLabel.text!) else {
                  fatalError("Cannot convert String to Double")
@@ -37,7 +35,14 @@ class ViewController: UIViewController {
         //What should happen when a non-number button is pressed
         isFinishedTypingNumber = true
         
-        displayValue *= calculatorLogic.calcButton(operation: sender.currentTitle)
+        if let calcMethod = sender.currentTitle {
+            let calculatorLogic = CalculatorLogic(number: displayValue)
+            
+            guard let result = calculatorLogic.calcButton(operation: calcMethod) else {
+                fatalError("The result of the calculation is nil.")
+            }
+            displayValue = result
+        }
     }
     
     
