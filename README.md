@@ -1,4 +1,4 @@
-# Calculator-Advanced-Swift-iOS13
+# Calculator-Swift-iOS13
 Calculator App (Swift Practice Project)
 
 Recreated the original Apple iOS Calculator app. Concepts:
