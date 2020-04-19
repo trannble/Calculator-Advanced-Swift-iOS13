@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var calculatorLogic = CalculatorLogic()
+    
     private var isFinishedTypingNumber: Bool = true
     
     //using get and set -> shorter code! -> less room for error
@@ -35,15 +37,7 @@ class ViewController: UIViewController {
         //What should happen when a non-number button is pressed
         isFinishedTypingNumber = true
         
-        if let calcMethod = sender.currentTitle {
-            if calcMethod == "+/-" {
-                displayValue *= -1
-            } else if calcMethod == "%" {
-                displayValue /= 100
-            } else if calcMethod == "AC" {
-                displayLabel.text = "0"
-            }
-        }
+        displayValue *= calculatorLogic.calcButton(operation: sender.currentTitle)
     }
     
     
